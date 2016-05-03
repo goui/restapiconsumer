@@ -1,10 +1,15 @@
 package fr.goui.restapiconsumer.main.presenter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import fr.goui.restapiconsumer.main.view.IMainView;
 import fr.goui.restapiconsumer.model.User;
+import fr.goui.restapiconsumer.network.NetworkService;
+import rx.Scheduler;
+import rx.Subscriber;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  *
@@ -12,6 +17,10 @@ import fr.goui.restapiconsumer.model.User;
 public class MainPresenter implements IPresenter<IMainView> {
 
     private IMainView mMainView;
+
+    private Subscription mSubscription;
+
+    private List<User> mListOfUsers;
 
     @Override
     public void attachView(IMainView view) {
@@ -21,14 +30,35 @@ public class MainPresenter implements IPresenter<IMainView> {
     @Override
     public void detachView() {
         mMainView = null;
+        if(mSubscription != null) {
+            mSubscription.unsubscribe();
+        }
     }
 
     public void loadUsers() {
         mMainView.showProgress();
-        // TODO retrofit call
-        List<User> users = new ArrayList<>();
-        users.add(new User("John", "Doe"));
-        users.add(new User("Jane", "Doe"));
-        mMainView.refreshUserList(users);
+        if(mSubscription != null) {
+            mSubscription.unsubscribe();
+        }
+        NetworkService service = NetworkService.Factory.create();
+        mSubscription = service.listUsers()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Subscriber<List<User>>() {
+                    @Override
+                    public void onCompleted() {
+                        mMainView.refreshUserList(mListOfUsers);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        mMainView.showError(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(List<User> listOfUsers) {
+                        mListOfUsers = listOfUsers;
+                    }
+                });
     }
 }

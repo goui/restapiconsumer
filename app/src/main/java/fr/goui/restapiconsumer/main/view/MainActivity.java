@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -79,5 +80,12 @@ public class MainActivity extends AppCompatActivity implements IMainView {
         mProgressBar.setVisibility(View.GONE);
         mRecyclerView.setVisibility(listOfUsers.size() == 0 ? View.GONE : View.VISIBLE);
         mNoUserFoundTextView.setVisibility(listOfUsers.size() == 0 ? View.VISIBLE : View.GONE);
+    }
+
+    @Override
+    public void showError(String message) {
+        Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+        mProgressBar.setVisibility(View.GONE);
+        mNoUserFoundTextView.setVisibility(View.VISIBLE);
     }
 }
