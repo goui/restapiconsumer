@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">RestApiConsumer</string>
+    <string name="firstname">firstname</string>
+    <string name="lastname">lastname</string>
+    <string name="email">email</string>
+    <string name="No_user_found_dot">No user found.</string>
 </resources>
