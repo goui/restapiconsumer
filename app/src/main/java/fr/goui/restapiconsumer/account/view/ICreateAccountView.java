@@ -7,7 +7,7 @@ import fr.goui.restapiconsumer.IView;
  */
 public interface ICreateAccountView extends IView {
 
-    void closeView();
+    void onAccountCreated();
 
     void showError(String message);
 }

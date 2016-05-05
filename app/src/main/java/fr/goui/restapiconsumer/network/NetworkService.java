@@ -13,6 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -27,7 +28,10 @@ public interface NetworkService {
 
     @POST("userFacade/subscribe")
     Observable<Boolean> createUser(@Body User user);
-    
+
+    @POST("userFacade/authenticate")
+    Observable<User> signIn(@Query("email") String email, @Query("password") String password);
+
     class Factory {
         public static NetworkService create() {
             // Define the interceptor, add authentication headers

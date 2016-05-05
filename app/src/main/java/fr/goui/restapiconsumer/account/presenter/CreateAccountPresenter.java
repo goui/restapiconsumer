@@ -44,7 +44,7 @@ public class CreateAccountPresenter implements IPresenter<ICreateAccountView> {
                 .subscribe(new Subscriber<Boolean>() {
                     @Override
                     public void onCompleted() {
-                        mCreateAccountView.closeView();
+                        mCreateAccountView.onAccountCreated();
                     }
 
                     @Override

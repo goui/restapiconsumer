@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -33,6 +34,9 @@ public class CreateAccountActivity extends AppCompatActivity implements ICreateA
     @BindView(R.id.account_password_edittext)
     EditText mPasswordEditText;
 
+    @BindView(R.id.account_create_button)
+    Button mCreateAccountButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,12 +52,18 @@ public class CreateAccountActivity extends AppCompatActivity implements ICreateA
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        mCreateAccountButton.setEnabled(true);
+    }
+
+    @Override
     public Context getContext() {
         return this;
     }
 
     @Override
-    public void closeView() {
+    public void onAccountCreated() {
         Intent intent = new Intent();
         intent.putExtra(mResources.getString(R.string.intent_extra_email), mEmailEditText.getText().toString());
         intent.putExtra(mResources.getString(R.string.intent_extra_password), mPasswordEditText.getText().toString());
@@ -64,10 +74,12 @@ public class CreateAccountActivity extends AppCompatActivity implements ICreateA
     @Override
     public void showError(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        mCreateAccountButton.setEnabled(true);
     }
 
     @OnClick(R.id.account_create_button)
     public void createAccount() {
+        mCreateAccountButton.setEnabled(false);
         User user = new User(mFirstNameEditText.getText().toString(), mLastNameEditText.getText().toString());
         user.setEmail(mEmailEditText.getText().toString());
         user.setPassword(mPasswordEditText.getText().toString());
