@@ -1,4 +1,4 @@
-package fr.goui.restapiconsumer.main.presenter;
+package fr.goui.restapiconsumer;
 
 /**
  *

@@ -2,6 +2,7 @@ package fr.goui.restapiconsumer.main.view;
 
 import java.util.List;
 
+import fr.goui.restapiconsumer.IView;
 import fr.goui.restapiconsumer.model.User;
 
 /**

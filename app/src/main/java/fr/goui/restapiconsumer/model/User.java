@@ -5,35 +5,33 @@ package fr.goui.restapiconsumer.model;
  */
 public class User {
 
-    private String firstname;
+    private String prenom;
 
-    private String lastname;
+    private String nom;
 
     private String email;
 
-    private String login;
-
     private String password;
 
-    public User(String firstname, String lastname) {
-        this.firstname = firstname;
-        this.lastname = lastname;
+    public User(String prenom, String nom) {
+        this.prenom = prenom;
+        this.nom = nom;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getPrenom() {
+        return prenom;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getNom() {
+        return nom;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
     public String getEmail() {
@@ -42,14 +40,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
     }
 
     public String getPassword() {

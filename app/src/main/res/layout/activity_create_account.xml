@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp"
+    tools:context="fr.goui.restapiconsumer.account.view.CreateAccountActivity">
+
+    <EditText
+        android:id="@+id/account_firstname_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/First_name"
+        android:inputType="textPersonName"/>
+
+    <EditText
+        android:id="@+id/account_lastname_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/Last_name"
+        android:inputType="textPersonName"/>
+
+    <EditText
+        android:id="@+id/account_email_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/Email_address"
+        android:inputType="textEmailAddress"/>
+
+    <EditText
+        android:id="@+id/account_password_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/Password"
+        android:inputType="textPassword"/>
+
+    <Button
+        android:id="@+id/account_create_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Create"/>
+
+</LinearLayout>

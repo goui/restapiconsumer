@@ -1,10 +1,8 @@
-package fr.goui.restapiconsumer.main.presenter;
-
-import java.util.List;
+package fr.goui.restapiconsumer.account.presenter;
 
 import fr.goui.restapiconsumer.IPresenter;
 import fr.goui.restapiconsumer.MyApplication;
-import fr.goui.restapiconsumer.main.view.IMainView;
+import fr.goui.restapiconsumer.account.view.ICreateAccountView;
 import fr.goui.restapiconsumer.model.User;
 import fr.goui.restapiconsumer.network.NetworkService;
 import rx.Subscriber;
@@ -15,51 +13,48 @@ import rx.schedulers.Schedulers;
 /**
  *
  */
-public class MainPresenter implements IPresenter<IMainView> {
+public class CreateAccountPresenter implements IPresenter<ICreateAccountView> {
 
-    private IMainView mMainView;
+    private ICreateAccountView mCreateAccountView;
 
     private Subscription mSubscription;
 
-    private List<User> mListOfUsers;
-
     @Override
-    public void attachView(IMainView view) {
-        mMainView = view;
+    public void attachView(ICreateAccountView view) {
+        mCreateAccountView = view;
     }
 
     @Override
     public void detachView() {
-        mMainView = null;
+        mCreateAccountView = null;
         if (mSubscription != null) {
             mSubscription.unsubscribe();
         }
     }
 
-    public void loadUsers() {
-        mMainView.showProgress();
+    public void createAccount(User user) {
         if (mSubscription != null) {
             mSubscription.unsubscribe();
         }
-        MyApplication application = MyApplication.get(mMainView.getContext());
+        MyApplication application = MyApplication.get(mCreateAccountView.getContext());
         NetworkService service = application.getNetworkService();
-        mSubscription = service.getAllUsers()
+        mSubscription = service.createUser(user)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Subscriber<List<User>>() {
+                .subscribe(new Subscriber<Boolean>() {
                     @Override
                     public void onCompleted() {
-                        mMainView.refreshUserList(mListOfUsers);
+                        mCreateAccountView.closeView();
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        mMainView.showError(e.getMessage());
+                        mCreateAccountView.showError(e.getMessage());
                     }
 
                     @Override
-                    public void onNext(List<User> listOfUsers) {
-                        mListOfUsers = listOfUsers;
+                    public void onNext(Boolean success) {
+                        // do nothing
                     }
                 });
     }

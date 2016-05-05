@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements IMainView {
 
     @Override
     public void showError(String message) {
-        Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
         mProgressBar.setVisibility(View.GONE);
         mNoUserFoundTextView.setVisibility(View.VISIBLE);
     }

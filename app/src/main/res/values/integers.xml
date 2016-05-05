@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="intent_request_code_account_creation">1</integer>
+</resources>

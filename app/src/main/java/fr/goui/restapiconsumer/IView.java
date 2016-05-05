@@ -1,4 +1,4 @@
-package fr.goui.restapiconsumer.main.view;
+package fr.goui.restapiconsumer;
 
 import android.content.Context;
 

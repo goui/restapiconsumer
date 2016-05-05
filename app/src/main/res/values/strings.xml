@@ -4,4 +4,15 @@
     <string name="lastname">lastname</string>
     <string name="email">email</string>
     <string name="No_user_found_dot">No user found.</string>
+    <string name="Email_address">Email address</string>
+    <string name="Password">Password</string>
+    <string name="Sign_in">Sign in</string>
+    <string name="Create_account">Create account</string>
+    <string name="First_name">First name</string>
+    <string name="Last_name">Last name</string>
+    <string name="Create">Create</string>
+
+    <!--Intent extras-->
+    <string name="intent_extra_email">intent_extra_email</string>
+    <string name="intent_extra_password">intent_extra_password</string>
 </resources>

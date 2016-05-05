@@ -45,8 +45,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         holder.position = position;
         User user = mListOfUsers.get(position);
         if (user != null) {
-            holder.firstnameTextView.setText(user.getFirstname());
-            holder.lastnameTextView.setText(user.getLastname());
+            holder.firstnameTextView.setText(user.getPrenom());
+            holder.lastnameTextView.setText(user.getNom());
             holder.emailTextView.setText(user.getEmail());
         }
     }
